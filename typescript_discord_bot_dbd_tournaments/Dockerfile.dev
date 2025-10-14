@@ -1,0 +1,6 @@
+FROM node:24-slim
+WORKDIR /typescript_discord_bot_dbd_tournaments
+COPY . .
+WORKDIR /typescript_discord_bot_dbd_tournaments/app
+RUN npm install && npx tsc && npx nodemon -v
+CMD ["npx", "nodemon", "--verbose", "./src/app.ts"]

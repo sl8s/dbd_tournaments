@@ -1,0 +1,28 @@
+{
+  "name": "typescript_discord_bot_dbd_tournaments",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "download": "npm install .",
+    "build": "tsc",
+    "server:dev": "nodemon ./src/app.ts",
+    "server:prod": "node ./build/src/app.js",
+    "test": "npx vitest run"
+  },
+  "dependencies": {
+    "canvas": "^3.2.0",
+    "discord.js": "^14.22.1",
+    "dotenv": "^17.2.2",
+    "node-cron": "^4.2.1",
+    "pg": "^8.16.3",
+    "smvp_typescript": "https://github.com/sl8s/smvp/releases/download/v1.0.0/smvp_typescript_v1_0_0.tgz"
+  },
+  "devDependencies": {
+    "@types/node-cron": "^3.0.11",
+    "@types/pg": "^8.15.5",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

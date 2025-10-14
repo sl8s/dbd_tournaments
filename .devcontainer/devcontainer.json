@@ -1,0 +1,15 @@
+{
+  "name": "dev",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
+  "remoteEnv": {
+    "DISCORD_CLIENT_ID": "${localEnv:DISCORD_CLIENT_ID}",
+    "DISCORD_BOT_TOKEN": "${localEnv:DISCORD_BOT_TOKEN}",
+    "DB_DEPENDENCY_NAME": "${localEnv:DB_DEPENDENCY_NAME}",
+    "POSTGRES_PORT": "${localEnv:POSTGRES_PORT}",
+    "POSTGRES_USER": "${localEnv:POSTGRES_USER}",
+    "POSTGRES_PASSWORD": "${localEnv:POSTGRES_PASSWORD}",
+    "POSTGRES_DB": "${localEnv:POSTGRES_DB}",
+    "ADMINER_PORT": "${localEnv:ADMINER_PORT}"
+  },
+  "postCreateCommand": "./.devcontainer/generate_env.sh"
+}

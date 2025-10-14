@@ -1,0 +1,6 @@
+.idea/
+.DS_Store
+.env
+/app/build/
+/app/node_modules/
+/app/package-lock.json

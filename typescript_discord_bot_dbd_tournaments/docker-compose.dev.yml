@@ -30,7 +30,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./app/src:/api/app/src
+      - ./app/src:/discord_bot/app/src
 
 volumes:  
   postgres_db_dev:

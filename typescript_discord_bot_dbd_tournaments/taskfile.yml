@@ -1,0 +1,40 @@
+version: "3"
+
+env:
+  app_directory: ./app
+
+tasks:
+  npm:download:
+    dir: "{{.app_directory}}"
+    cmds:
+      - npm run download
+  npm:build:
+    dir: "{{.app_directory}}"
+    cmds:
+      - npm run build
+  npm:test:
+    dir: "{{.app_directory}}"
+    cmds:
+      - npm run test
+  npm:dev:run:
+    dir: "{{.app_directory}}"
+    cmds:
+      - npm run server:dev
+  npm:prod:run:
+    dir: "{{.app_directory}}"
+    cmds:
+      - npm run server:prod
+  docker:dev:run:
+    cmds:
+      - docker-compose -f docker-compose.dev.yml down
+      - docker-compose -f docker-compose.dev.yml up --build
+  docker:dev:stop:
+    cmds:
+      - docker-compose -f docker-compose.dev.yml down
+  docker:prod:run:
+    cmds:
+      - docker-compose -f docker-compose.prod.yml down
+      - docker-compose -f docker-compose.prod.yml up --build
+  docker:prod:stop:
+    cmds:
+      - docker-compose -f docker-compose.prod.yml down  

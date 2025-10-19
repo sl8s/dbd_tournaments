@@ -10,3 +10,7 @@
 - [./app/src/utilities/app_methods.ts](./app/src/utilities/app_methods.ts) - Refactoring
 - [./app/src/utilities/base_data_type.ts](./app/src/utilities/base_data_type.ts) - Refactoring
 - [./app/src/app.ts](./app/src/app.ts) - Refactoring
+
+## Restore backup DB (CLI)
+
+- docker compose -f docker-compose.{dev|prod}.yml exec -T postgres sh -c 'zcat ./backups_{dev|prod}/{timestamp}.sql.gz | psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"'

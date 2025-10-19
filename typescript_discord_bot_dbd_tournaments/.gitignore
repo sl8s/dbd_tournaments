@@ -1,6 +1,8 @@
 .idea/
 .DS_Store
 .env
+/backups_dev/*.sql.gz
+/backups_prod/*.sql.gz
 /app/build/
 /app/node_modules/
 /app/package-lock.json

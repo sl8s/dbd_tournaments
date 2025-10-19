@@ -16,14 +16,6 @@ tasks:
     dir: "{{.app_directory}}"
     cmds:
       - npm run test
-  npm:dev:run:
-    dir: "{{.app_directory}}"
-    cmds:
-      - npm run server:dev
-  npm:prod:run:
-    dir: "{{.app_directory}}"
-    cmds:
-      - npm run server:prod
   docker:dev:run:
     cmds:
       - docker-compose -f docker-compose.dev.yml down

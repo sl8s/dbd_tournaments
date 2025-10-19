@@ -11,6 +11,29 @@ services:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
     volumes:
       - postgres_db_prod:/var/lib/postgresql/data
+      - ./backups_prod:/backups_prod
+    ## command: ["sh", "-c", "docker-entrypoint.sh postgres & until PGPASSWORD=\"$POSTGRES_PASSWORD\" psql -U \"$POSTGRES_USER\" -d \"$POSTGRES_DB\" -c 'SELECT 1' >/dev/null 2>&1; do sleep 2; done; exec ./backups_prod/backup_scheduler.sh"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$POSTGRES_USER\" -d \"$POSTGRES_DB\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  backup_postgres:
+    image: postgres:17
+    container_name: backup_postgres
+    restart: on-failure
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_db_prod:/var/lib/postgresql/data
+      - ./backups_prod:/backups_prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["sh", "-c", "exec ./backups_prod/backup_scheduler.sh"]
 
   adminer:
     image: adminer

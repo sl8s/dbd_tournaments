@@ -2,6 +2,7 @@
   "name": "dev",
   "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu",
   "remoteEnv": {
+    "IS_DEV_MODE": "${localEnv:IS_DEV_MODE}",
     "DISCORD_CLIENT_ID": "${localEnv:DISCORD_CLIENT_ID}",
     "DISCORD_CLIENT_SECRET": "${localEnv:DISCORD_CLIENT_SECRET}",
     "DISCORD_BOT_TOKEN": "${localEnv:DISCORD_BOT_TOKEN}",

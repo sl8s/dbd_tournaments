@@ -1,7 +1,8 @@
 import { ChatInputCommandInteraction, Client, Team, User } from "discord.js";
 
 async function devTestBracketCommandInteraction(client: Client, interaction: ChatInputCommandInteraction): Promise<void> {
-    interaction.options.getInteger("size", true);
+    await interaction.deferReply();
+    const size = interaction.options.getInteger("size", true);
     const clientApplication = await client.application?.fetch();
     const ownerBot = clientApplication?.owner ?? null;
     const isDoesNotHaveOwnerBot = ownerBot === null;
@@ -16,7 +17,7 @@ async function devTestBracketCommandInteraction(client: Client, interaction: Cha
     if(isOwnerBotTypeTeamAndYouNotOwner) {
         return;
     }
-    await interaction.reply("Success");
+    await interaction.editReply("Success: " + size);
 }
 
 export default devTestBracketCommandInteraction;

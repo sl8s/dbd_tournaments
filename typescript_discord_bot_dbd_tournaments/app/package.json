@@ -7,6 +7,7 @@
     "build": "tsc",
     "server:dev": "nodemon ./src/app.ts",
     "server:prod": "node ./build/src/app.js",
+    "deploy_commands": "node ./build/src/deploy_commands.js",
     "test": "npx vitest run"
   },
   "dependencies": {

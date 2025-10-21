@@ -8,6 +8,7 @@ dotenv.config({ path: path.resolve(process.cwd(), "..", ".env") });
 const client: Client = new Client({
     intents: [
       GatewayIntentBits.Guilds,
+      GatewayIntentBits.GuildMembers,
       GatewayIntentBits.GuildMessages,
       GatewayIntentBits.MessageContent,
     ],

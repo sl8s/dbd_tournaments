@@ -33,7 +33,7 @@ export async function messages(client: Client, message: Message): Promise<void> 
   if (message.author.bot) { 
     return; 
   }
-  const isChatInputCommandAndDevMode = message.content.charAt(0) === "!" && Boolean(process.env.IS_DEV_MODE).valueOf();
+  const isChatInputCommandAndDevMode = message.content.charAt(0) === "!" && process.env.DOCKERFILE === "Dockerfile.dev";
   if(isChatInputCommandAndDevMode) {
     await a0QQMessagesQQIsChatInputCommandAndDevMode(client,message);
     return;

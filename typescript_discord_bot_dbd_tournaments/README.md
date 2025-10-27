@@ -10,6 +10,15 @@
 - [./app/src/app.ts](./app/src/app.ts) - Refactoring
 - [./app/src/deploy_commands.ts](./app/src/deploy_commands.ts) - Refactoring
 
-## Restore backup DB (CLI)
+## Task (CLI)
 
-- docker compose -f docker-compose.{dev|prod}.yml exec -T postgres sh -c 'zcat ./backups_{dev|prod}/{timestamp}.sql.gz | psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+- Described how to backup PostgreSQL data and check it using Adminer.
+
+### Restore backup DB
+
+- task docker:postgres:restore_backup TIMESTAMP={timestamp}
+
+### Check data
+
+- task docker:postgres_and_adminer:run
+- task docker:stop

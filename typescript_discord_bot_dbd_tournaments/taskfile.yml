@@ -21,17 +21,23 @@ tasks:
     cmds:
       - npm run build
       - npm run deploy_commands
-  docker:dev:run:
+  docker:postgres:restore_backup:
     cmds:
-      - docker-compose -f docker-compose.dev.yml down
-      - docker-compose -f docker-compose.dev.yml up --build
-  docker:dev:stop:
+      - docker-compose down
+      - docker-compose up -d postgres
+      - docker-compose exec -T postgres sh -c 'zcat /backups/{{.TIMESTAMP}}.sql.gz | psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+      - docker-compose down
+    requires:
+      vars: [TIMESTAMP]
+  docker:postgres_and_adminer:run:
     cmds:
-      - docker-compose -f docker-compose.dev.yml down
-  docker:prod:run:
+      - docker-compose down
+      - docker-compose up -d postgres
+      - docker-compose up -d adminer
+  docker:run:
     cmds:
-      - docker-compose -f docker-compose.prod.yml down
-      - docker-compose -f docker-compose.prod.yml up --build
-  docker:prod:stop:
+      - docker-compose down
+      - docker-compose up --build
+  docker:stop:
     cmds:
-      - docker-compose -f docker-compose.prod.yml down  
+      - docker-compose down
